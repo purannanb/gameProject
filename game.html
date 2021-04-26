@@ -1,0 +1,189 @@
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel = "stylesheet" href = "game.css">
+    <title>Dungeon Adventure</title>
+    <script>
+          function hideStuff()
+            {
+            document.getElementById('hidded').style.visibility = "hidden";
+            document.getElementById('stairClimb').style.visibility = "hidden";
+            document.getElementById('hideThis').style.visibility = "hidden";
+            document.getElementById('gottaHide').style.visibility = "hidden";
+            document.getElementById('fightTwo').style.visibility = "hidden";
+            document.getElementById('partThree').style.visibility = "hidden";
+            }
+            function getName()
+            {
+              //var x = window.localStorage.getItem("name");
+              //document.getElementById("welcome").innerHTML = x;
+              var y = document.getElementById("textbox").value;
+              document.getElementById("nameTag").innerHTML = "Your Name is: " + y;
+              document.getElementById("chooseOne").innerHTML = "<input id = 'button' type = 'button' value = 'Next' onclick = 'potionChoice()'>";
+            }
+
+          function potionChoice()
+            {
+              document.getElementById("chooseOne").innerHTML = "Which potion would you like?";
+              document.getElementById("taskTwo").innerHTML = "<input id = 'button' type = 'button' value = 'Red' onclick = 'returnPotion(this.value)'> &nbsp <input id = 'button' type = 'button' value = 'Blue' onclick = 'returnPotion(this.value)'>";
+            }
+          function returnPotion(chosenPotion)
+            {
+
+              document.getElementById("taskTwo").innerHTML = "You chose the " + chosenPotion + " potion!"; //used https://www.geeksforgeeks.org/how-to-get-the-id-of-the-clicked-button-using-javascript-jquery/
+              document.getElementById("potions").innerHTML = "Potion Selected: " + chosenPotion;
+              var poweri = 4;
+              document.getElementById("power").innerHTML = "Power Level: " + poweri + "/10";
+              document.getElementById("roomSelection").innerHTML = "You will now select a room. This room will determine the creature you fight...";
+              document.getElementById("moreInfo").innerHTML = "You are now going to enter a room. Click Confirm and enter 1, 2 or 3";
+              document.getElementById("selection").innerHTML = "<input id = 'button' type = 'button' value = 'Confirm' onclick = 'enterRoom()'>";
+            }
+          function enterRoom()
+          {
+             document.getElementById('hidded').style.visibility = "visible";
+             var userPick = document.getElementById("roomSelect").value;
+             userPick = parseInt(userPick);
+
+             if(userPick == 1)
+             {
+                document.getElementById("hidded").innerHTML = "You are fighting a dragon. This one is going to be a tough battle"
+                document.getElementById("fight").innerHTML = "You manage to win, and gain lots of experience. (Power Level + 6)"
+                document.getElementById("power").innerHTML = "Power Level: 10/10";
+                document.getElementById("monster").innerHTML = "Creature Fought: Dragon";
+                document.getElementById("congrats").innerHTML = "You find an exit. Click on the portal to the right to do your final task"
+
+             }
+
+             if(userPick == 2)
+             {
+                document.getElementById("hidded").innerHTML = "You are fighting a lion. The potion from earlier will make this easy"
+                document.getElementById("fight").innerHTML = "This was too easy, you barely gained any experience. (Power Level + 2)"
+                document.getElementById("power").innerHTML = "Power Level: 6/10";
+                document.getElementById("monster").innerHTML = "Creature Fought: Lion";
+                document.getElementById("congrats").innerHTML = "You find an exit. Click on the portal to the right to do your final task"
+             }
+             if(userPick == 3)
+             {
+                document.getElementById("hidded").innerHTML = "You are fighting a demon. This will be hard, but you can make it"
+                document.getElementById("fight").innerHTML = "This was a good fight, you learn a few new things. (Power Level + 4)"
+                document.getElementById("power").innerHTML = "Power Level: 8/10";
+                document.getElementById("monster").innerHTML = "Creature Fought: Demon";
+                document.getElementById("congrats").innerHTML = "You find an exit. Click on the portal to the right to do your final task"
+             }
+          }
+          function enterRoomTwo()
+          {
+
+            document.getElementById("fightTwoo").innerHTML = "Looks like you came back to increase your power level. Pick a new room. 1, 2 or 3"
+             document.getElementById('fightTwo').style.visibility = "visible";
+             var userPick = document.getElementById("roomSelectTwo").value;
+             userPick = parseInt(userPick);
+
+             if(userPick == 1)
+             {
+               document.getElementById('partThree').style.visibility = "visible";
+                document.getElementById("fightTwo").innerHTML = "You are fighting a dragon. This one is going to be a tough battle"
+                document.getElementById("partTwo").innerHTML = "You manage to win, and gain lots of experience."
+                document.getElementById("power").innerHTML = "Power Level: 10/10";
+                document.getElementById("monster").innerHTML = "Creature Fought: Dragon";
+
+             }
+
+             if(userPick == 2)
+             {
+               document.getElementById('partThree').style.visibility = "visible";
+                document.getElementById("fightTwo").innerHTML = "You are fighting a gorilla. This shouldn't be too hard"
+                document.getElementById("partTwo").innerHTML = "This was easy, you max out your power level"
+                document.getElementById("power").innerHTML = "Power Level: 10/10";
+                document.getElementById("monster").innerHTML = "Creature Fought: Lion";
+             }
+             if(userPick == 3)
+             {
+
+                document.getElementById("fightTwo").innerHTML = "You are fighting a demon. This will be hard, but you can make it"
+                document.getElementById("partTwo").innerHTML = "This was a good fight, you learn a few new things."
+                document.getElementById("power").innerHTML = "Power Level: 10/10";
+                document.getElementById("monster").innerHTML = "Creature Fought: Demon";
+                document.getElementById('partThree').style.visibility = "visible";
+
+             }
+
+
+          }
+          function exitTime()
+          {
+              document.getElementById('gottaHide').style.visibility = "visible";
+              document.getElementById("exitInstructions").innerHTML = "You find steps to exit the dungeon. The steps only go up to a certain point, the rest is a trap."
+              document.getElementById("exitpartTwo").innerHTML = "Correcty guess the amount of steps to go up before the steps collapse. Pick right, you win. Or else you lose"
+              document.getElementById("stepCount").innerHTML = "Pick a number between 1 and 16. Scroll Down once done"
+              var steps = document.getElementById("stepCounter").value;
+              steps = parseInt(steps);
+              var iterate = ""
+              for (var i = 1; i <= steps; i++)
+              {
+                iterate = iterate + "Step " + i + ": Safe" + "<br>";
+                document.getElementById('stairClimb').style.visibility = "visible";
+              }
+                document.getElementById('successMessage').innerHTML = iterate;
+          }
+          function printWin()
+          {
+            alert("You Win!");
+          }
+    </script>
+  </head>
+
+  <body onload="hideStuff()"> <!-- used https://stackoverflow.com/questions/12081061/making-button-hidden-on-page-load/12081119 -->
+    <IMG STYLE = "position:absolute; TOP:250px; LEFT:1000px; WIDTH:350px; HEIGHT:375px" SRC = "pic.png" onclick= "exitTime()"> <!--used https://bytes.com/topic/html-css/answers/510785-how-do-you-position-image-->
+    <h1><center>Dungeon Adventure</h1>
+    <hr><br>
+
+    <table class = "table">
+      <tr>
+        <td><p id = "power">Power Level: </p></td>
+        <td><p id = "monster">Creature Fought: </p></td>
+        <td><p id = "potions">Potion Selected: </p></td>
+      </tr><br>
+    </table>
+    <p>Welcome to the dungeon adventure, please enter your name</p>
+    <input id = "textbox" type = "text" placeholder = "Enter Name">
+    <input id = "button" type = "button" value = "Submit" onclick = "getName()">
+    <p id = "nameTag"></p>
+    <p id = "chooseOne"></p>
+    <p id = "taskTwo"></p>
+    <p id = "taskTwo"></p>
+    <p id = "roomSelection"></p>
+    <p id = "moreInfo"></p>
+    <p id = "selection"></p>
+    <p id = hidded>
+    <input id = "roomSelect" type = "text" placeholder = "Enter #">
+    <input id = "button" type = "button" value = "Enter Room" onclick = "enterRoom()">
+    </p>
+    <p id = "fight"></p>
+    <p id = "congrats"></p>
+    <p id = "exitInstructions"></p>
+    <p id = "exitpartTwo"></p>
+    <p id = "stepCount"></p>
+    <p id = "gottaHide">
+    <input id = "stepCounter" type = "text" placeholder = "Enter #">
+    <input id = "button" type = "button" value = "Use" onclick = "exitTime()">
+    </p>
+    <p id = "successMessage"></p>
+    <p id = "hideThis"></p>
+    <p id = "stairClimb">
+    <input id = "button" type = "button" value = "Go Back and Fight" onclick = "enterRoomTwo()">
+    <input id = "button" type = "button" value = "Climb Stairs" onclick = "printWin()">
+    </p>
+    <p id = "finalBye"></p>
+    <p id = "fightTwoo"></p>
+    <p id = "fightTwo">
+    <input id = "roomSelectTwo" type = "text" placeholder = "Enter #">
+    <input id = "button" type = "button" value = "Enter Room" onclick = "enterRoomTwo()">
+    </p>
+    <p id = "partTwo"></p>
+    <p id = "partThree">
+    <input id = "button" type = "button" value = "Leave Dungeon" onclick = "printWin()">
+    </p>
+  </body>
+</html>
